@@ -57,7 +57,7 @@ export const toggle = id => ({
         case TOGGLE:
             return {
                 ...state,
-                todos: state.todos.map(todos => 
+                todos: state.todos.map(todo => 
                     todo.id === action.id ? { ...todo, done: !todo.done } : todo
                 )
             };
