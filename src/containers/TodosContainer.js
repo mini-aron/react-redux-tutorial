@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { changeInput, insert, toggle, remove } from "../modules/todos";
 import Todos from "../components/Todos";
 
-const TodosContaoner = ({
+const TodosContainer = ({
   input,
   todos,
   changeInput,
@@ -35,4 +35,4 @@ export default connect(
         toggle,
         remove,
     },
-)(TodosContaoner);
+)(TodosContainer);

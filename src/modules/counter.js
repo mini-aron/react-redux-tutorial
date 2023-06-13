@@ -1,30 +1,28 @@
+import { act } from "react-dom/test-utils";
+import { createAction, handleAction } from "redux-actions";
+
 const INCREASE = "counter/INCREASE";
 const DECREASE = "counter/DECREASE";
 
 //액션타입은 대문자로 정의, 문자열 내용은 '모듈이름/액션이름'과 같은 형태로 작성 -> 문자열 안에 모듈이름을 넣어주므로써 액션의 이름이 충돌되지 않게 해줌
 
 //액션생성 함수
-export const increase = () => ({ type: INCREASE });
-export const decrease = () => ({ type: DECREASE });
+export const increase = createAction(INCREASE);
+export const decrease = createAction(DECREASE);
+
 //export를 사용하는 이유는 나중에 다른 파일에서 이 함수를 불러와 사용할 수 있게 하기 위함임
 
 const initialState = {
   number: 0,
 };
 
-function counter(state = initialState, action) {
-  switch (action.type) {
-    case INCREASE:
-      return {
-        number: state.number + 1,
-      };
-    case DECREASE:
-      return {
-        number: state.number - 1,
-      };
-    default:
-      return state;
-  }
-}
+const counter = handleAction(
+  {
+    [INCREASE]: (state, action) => ({ number: state.number + 1}),
+    [DECREASE]: (state, action) => ({ number: state.number - 1}),
+  },
+  initialState,
+);
+
 
 export default counter;
